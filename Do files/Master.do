@@ -248,6 +248,13 @@
 		**---------------------------------------------------------------------------------------------------------------------------
 			-> How long it takes to run? 
 				Half an hour. 
+				
+				->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+				->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+				OBS-> Starting in 2023, the Federal Government stopped allowing the download the Census od Education as it used to 
+				do when we started working paper. 
+				If you try to download the microdata, it will not be the same data organization and variables. 
+				->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	
 			-> What it does?
 				The code imports the microdata from School Census.
