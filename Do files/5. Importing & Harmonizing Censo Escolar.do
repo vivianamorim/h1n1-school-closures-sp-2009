@@ -155,7 +155,7 @@
 			
 			**
 			**
-			drop 	 	MASCARA CODMUNIC DE9F11G-NE9F117
+			drop 	 	MASCARA CODMUNIC DE9F11G-NE9F117  PARA_INT PARAB_INT
 			rename 		(ANO-S_CONEX) ///
 						(year network location ComputerLab ScienceLab ClosedSportCourt OpenedSportCourt Library ReadingRoom InternetAccess) 
 			
@@ -538,7 +538,7 @@
 			preserve
 				collapse 	(mean) tclass*	   					 , by (year network coduf uf codmunic codmunic2 codschool)			//tamanho médio das turmas
 				order 		year coduf uf codmunic codmunic2 codschool network
-				format 		tclass* %4.2fcwww
+				format 		tclass* %4.2fc
 				sort 		codschool year
 				append 		using 	"$inter/Turmas2005.dta"
 				save 		 		"$inter/Class-Size.dta", replace
