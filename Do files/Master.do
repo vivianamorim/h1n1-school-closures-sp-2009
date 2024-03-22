@@ -495,7 +495,7 @@
 		do "$dofiles/1. GDP at municipal level.do"
 		do "$dofiles/2. H1N1.do"
 		do "$dofiles/3. Importing & Harmonizing Prova Brasil.do"
-		*do "$dofiles/5. Importing & Harmonizing Censo Escolar.do"	 
+		do "$dofiles/5. Importing & Harmonizing Censo Escolar.do"	 
 		do "$dofiles/4. Importing & Harmonizing Flow Indicators.do"
 		do "$dofiles/6. Importing & Harmonizing IDEB.do"
 		do "$dofiles/7. Setting up dataset.do"
