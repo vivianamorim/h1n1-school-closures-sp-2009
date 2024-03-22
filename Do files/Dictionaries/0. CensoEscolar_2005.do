@@ -28,6 +28,6 @@ str DEF116 3513-3524			//numero de turmas
 str NEF116 3729-3740
 str DE9F117 13929-13940
 str NE9F117 14169-14180
-using "$raw/CensoEscolar_2005/DADOS/CENSOESC_2005.txt";
-save "$inter/Pré_2007/CensoEscolar2005.dta", replace;
+using "$raw/CensoEscolar/2005/DADOS/CENSOESC_2005.txt";
+save "$inter/CensoEscolar2005.dta", replace;
 clear; 
