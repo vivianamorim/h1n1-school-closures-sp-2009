@@ -386,8 +386,8 @@
 			
 			**
 			**
-			keep    	 ANO DEP LOC DE9F11G-NE9F117 codmunic codschool coduf
-			rename 		(ANO DEP LOC) ///
+			keep    	 COD DEP LOC DE9F11G-NE9F117 codmunic codschool coduf
+			rename 		(COD DEP LOC) ///
 						(year network location) 
 				   
 			**
@@ -572,8 +572,8 @@
 			
 			**
 			**
-			keep    	 ANO DEP LOC DE9F11G-NE9F117 codmunic codschool coduf
-			rename 		(ANO DEP LOC) 											(year network location) 
+			keep    	 COD DEP LOC DE9F11G-NE9F117 codmunic codschool coduf
+			rename 		(COD DEP LOC) 											(year network location) 
 			
 			**
 			**
