@@ -20,6 +20,7 @@
 	**Importing 2005 data.
 	**
 	*________________________________________________________________________________________________________________________________* 
+		do "$dofiles/Dictionaries/0. Mascara_2005.do"
 		do "$dofiles/Dictionaries/0. CensoEscolar_2005.do"
 
 
@@ -156,7 +157,7 @@
 			**
 			**
 			drop 	 	MASCARA CODMUNIC DE9F11G-NE9F117  PARA_INT PARAB_INT
-			rename 		(ANO-S_CONEX) ///
+			rename 		(COD-S_CONEX) ///
 						(year network location ComputerLab ScienceLab ClosedSportCourt OpenedSportCourt Library ReadingRoom InternetAccess) 
 			
 			**

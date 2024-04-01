@@ -3,7 +3,7 @@ set more off
 #delimit
 infix
 str	MASCARA	1-8
-str ANO 9-13
+str COD 9-13
 str CODMUNIC 14-25
 str DEP 128-137
 str LOC 138-147
@@ -31,4 +31,3 @@ str NE9F117 14169-14180
 using "$raw/Censo Escolar/2005/DADOS/CENSOESC_2005.TXT";
 save "$inter/CensoEscolar2005.dta", replace;
 clear; 
-
