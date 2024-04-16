@@ -4,7 +4,53 @@ School shutdowns were adopted worldwide to contain the transmission of the Covid
 
 Unit of observation: schools. Source of the data: Prova Brasil and School Census. Grade level: fifth grade. Period: 2005, 2007 (pre-treatment) and 2009 (post-treatment). Dependent variables: proficiency of students in Portuguese, proficiency of students in Math, standardized performance in Portuguese and Math, percentage of students with insufficient performance in Portuguese and percentage of students with insufficient performance in Math. Independent variables: the vector of control variables was chosen based on a Lasso regression, which selects the variables that better predict the variation in the proficiency score. The selected variables are: if the school has science and computer lab, sport court, library and access to the internet; instruction hours per day; students per class; approval rates; GDP per capita of the municipality where the school is located; and socioeconomic characteristics of fifth graders. The vector of socioeconomic variables includes the percentage of mothers with a high school diploma; the percentage of students that already repeated or dropped out school; the percentage of whites and girls; the percentage of students that already work, that previously studied in a private school and that have a computer at home; the percentage of students whose parent's incentive them to study, to do the homework, to read, to not miss classes, and that talk about what happens in the school.
 
-To reproduce the code,  modify the path in the section Preparing Folder Paths. 
+To reproduce the code,  modify the path in the section Preparing Folder Paths in the Master do file. 
+
+## Data Availability Statement
+
+The data supporting the findings of this study are available from the following sources:
+
+1. **GDP at Municipal Level**
+   - **Source**: Instituto Brasileiro de Geografia e Estatística (IBGE)
+   - **Files**: 
+    - 'base_de_dados_2010_2014.xls' for GDP at municipal level from 2010-2014. [Download here](https://www.ibge.gov.br) (Choose: Estatísticas -> Por Pesquisa e Estudo -> Produto Interno Bruto dos Municípios -> Downloads -> 2014 -> base -> base_de_dados_2010_2014.xls)
+     - 'base.xls' for GDP at municipal level from 1999-2009. [Download here](https://www.ibge.gov.br) (Choose: Estatísticas -> Por Pesquisa e Estudo -> Produto Interno Bruto dos Municípios -> Downloads -> 2005-2009 -> banco_dados.zip -> base.xls)
+     - 'popmunic2007layoutTCU14112007.xls' for Population by municipality in 2007. [Download here](https://www.ibge.gov.br) (Choose: Estatísticas -> Por Tema -> População -> Contagem da População -> Downloads -> Contagem_da_Populacao_2007 -> Populacao_Enviada_TCU_2007_11_14 -> popmunic2007layoutTCU14112007.xls)
+      - **Located**: Raw/IBGE
+
+2. **H1N1 Hospitalizations**
+   - **Source**: DataSUS
+   - **File**: 'A161451189_28_143_208.csv' for the number of hospitalizations due to H1N1. [Download here](http://www2.datasus.gov.br/DATASUS/index.php) (Choose Informações de Saúde (TABNET) -> Epidemiológicas e Morbidade -> Doenças e Agravos de Notificação - 2007 em diante (SINAN) -> INFLUENZA PANDÊMICA, then follow the selections for 2009 and confirmed cases, and click on 'COPIA COMO .CSV')
+    - **Located**: Raw/SUS
+
+3. **Prova Brasil Microdata**
+   - **Source**: Instituto Nacional de Pesquisas Educacionais (INEP)
+   - **Files**: Microdata for Prova Brasil for the years 2007 and 2009. [Download here](https://www.gov.br/inep/pt-br) (Choose: Acesso à informação -> Dados Abertos -> Microdados -> Prova Brasil)
+   - **Located**: Raw/Prova Brasil
+
+4. **Flow Indicators**
+   - **Source**: Instituto Nacional de Pesquisas Educacionais (INEP)
+   - **Files**: Download the 'TX RENDIMENTO ESCOLAS' files for 2007, 2008, and 2009. [Download here](https://www.gov.br/inep/pt-br) (Choose: Acesso à informação -> Dados Abertos -> Indicadores Educacionais -> Taxas de Rendimento)
+   - **Located**: Raw/Rendimiento
+
+5. **Censo Escolar Microdata**
+   - **Source**: Instituto Nacional de Pesquisas Educacionais (INEP)
+   - **Files**: Microdata for Censo Escolar for the years 2005, 2007, 2008, and 2009. [Download here](https://www.gov.br/inep/pt-br) (Choose: Acesso à informação -> Dados Abertos -> Microdados -> Censo Escolar)
+   - **Note**: Recent changes by the Brazilian Government may affect the availability and structure of these data.
+   - **Located**: Raw/Censo Escolar
+
+6. **IDEB (Education Development Index)**
+   - **Source**: Instituto Nacional de Pesquisas Educacionais (INEP)
+   - **Files**: Different files for regions, states, municipalities, and schools for the years considered, focusing on Ensino Fundamental Regular and Médio. [Download here](https://www.gov.br/inep/pt-br) (Choose: Áreas de atuação -> Pesquisas Estatísticas e Indicadores Educacionais -> IDEB -> Resultados)
+    - **Located**: Raw/IDEB
+    
+7. **IDESP por Escola** 
+- **Source**: Secretaria da Educação do Estado de São Paulo, Governo de São Paulo.
+- **Files**: IDESP by school. [Download here] (https://dados.educacao.sp.gov.br/dataset/%C3%ADndice-de-desenvolvimento-da-educa%C3%A7%C3%A3o-do-estado-de-s%C3%A3o-paulo-idesp-por-escola)
+- **Located**: Raw/IDEPSP
+
+
+## Explanation of the code
 
 
 	*________________________________________________________________________________________________________________________________* 
@@ -58,7 +104,7 @@ To reproduce the code,  modify the path in the section Preparing Folder Paths.
 
 	*________________________________________________________________________________________________________________________________* 
 	**
-	This master do file runs the following codes: 
+	The master do file runs the following codes: 
 	**
 	*________________________________________________________________________________________________________________________________* 
 		
