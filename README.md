@@ -45,11 +45,9 @@ The data supporting the findings of this study are available from the following 
     - **Located**: Raw/IDEB
     
 7. **IDESP por Escola** 
-- **Source**: Secretaria da Educação do Estado de São Paulo, Governo de São Paulo.
-- **Files**: IDESP by school. [Download here](https://dados.educacao.sp.gov.br/dataset/%C3%ADndice-de-desenvolvimento-da-educa%C3%A7%C3%A3o-do-estado-de-s%C3%A3o-paulo-idesp-por-escola). (Choose Idesp - Escolas Série histórica de 2007 a 2019 - Ensino Fundamental - Anos Iniciais.csv)
-
-
-- **Located**: Raw/IDEPSP
+    - **Source**: Secretaria da Educação do Estado de São Paulo, Governo de São Paulo.
+    - **Files**: IDESP by school. [Download here](https://dados.educacao.sp.gov.br/dataset/%C3%ADndice-de-desenvolvimento-da-educa%C3%A7%C3%A3o-do-estado-de-s%C3%A3o-paulo-idesp-por-escola). (Choose Idesp - Escolas Série histórica de 2007 a 2019 - Ensino Fundamental - Anos Iniciais.csv)
+    - **Located**: Raw/IDEPSP
 
 
 ## Explanation of the code
