@@ -7,7 +7,6 @@
 
 	*Important definitions*
 	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
-	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 	/*
 		
 		**
@@ -39,7 +38,6 @@
 	**
 	*Program to correct dif in dif and triple dif samples
 	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
-	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 	{	
 	cap program drop	 correcting_sample				
 		program define 	 correcting_sample						
@@ -63,7 +61,7 @@
 		*Dif in Dif
 		*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 			**
-			if "`model'" == "dif" {
+			if "`model'" == "dif" {				//dif-in-dif model. 
 			
 				**
 				foreach T in 0 1					{ 
@@ -166,7 +164,6 @@
 	**
 	*Matrix to store regression's results
 	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
-	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 	{
 		estimates clear
 		
@@ -189,7 +186,6 @@
 	**
 	*Vars for models with interactions
 	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
-	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 	{	
 	global interactions medu spt prin absen atraso
 	}
@@ -199,7 +195,6 @@
 	**
 	**	
 	*Program to store regression's results and bootstrapped standard errors
-	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 	{	
 		cap program drop 	 mat_res
@@ -274,7 +269,7 @@
 			**
 			**Models with interactions
 			if "`var2'" !="novar" {											//pvalues of the models in which we only have the treatment coeficient + treatment coefficient versus interaction + controls
-				matrix define   pboots    = J(1,3,0)
+				matrix define   pboots    = J(1,3,0)	//matrix 1 row, 3 columns, filled with 0 
 				matrix colnames pboots    = "`var1' `var2' `var3'"
 				matrix pboots[1,1]        = $pvalue
 				matrix pboots[1,2]        = $pvalue2
@@ -301,7 +296,7 @@
 				scalar 	 mediaT  = r(mean)
 				scalar   sdT     = r(sd)
 				scalar 	 att_sdT = `ATT'/sdT
-				scalar   att_pcT = `ATT'/media
+				scalar   att_pcT = (`ATT'/media)*100		//att in percentage 
 				
 				**
 				**Comparison group
@@ -327,7 +322,7 @@
 				scalar 	 mediaT  = r(mean)
 				scalar   sdT     = r(sd)
 				scalar 	 att_sdT = `ATT'/sdT
-				scalar   att_pcT = `ATT'/media
+				scalar   att_pcT = (`ATT'/media)*100
 				
 				**
 				**Comparison group
@@ -350,6 +345,8 @@
 				estadd scalar mediaC      = mediaC: model`model'`sub'`grade'
 				estadd scalar sdC         = sdC: 	model`model'`sub'`grade'
 				estadd scalar att_sdC     = att_sdC:model`model'`sub'`grade'
+				
+				
 			}
 			
 			
@@ -409,7 +406,6 @@
 	**	
 	*Regressions
 	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
-	*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
 	*=============================>>YOU NEED STATA 16 FOR LASSO 
 	*=============================>>
 
@@ -435,13 +431,14 @@
 			tempfile file_reg
 			save	`file_reg'
 		}
-			
+		
+		
 		*................................................................................................................................................................................*
 		**
 		**
 		**Outcomes
 		
-		foreach subject in math5 math_insuf5 port5 port_insuf5 approval5 repetition5 dropout5     { //regression for each of our dependent variables  // 
+		foreach subject in  math5 math_insuf5 port5 port_insuf5 approval5 repetition5 dropout5     { //regression for each of our dependent variables  // 
 			  
 			*............................................................................................................................................................................*
 			**
@@ -611,7 +608,7 @@
 				*Controls including socioeconomic variables for students + teachers' and principals' controls (excluding teacher motivation & abseenteism)
 				{
 				//only did this because in the model with interaction between treatment and teachers that always correct the homework, we should not have teacher motivation (which is an index based on how frequenly teachers correct the homework). 
-				if `sub' != 5 & `sub' != 4 {
+				if `sub' != 5 & `sub' != 4 & `sub' != 6 & `sub' != 7 & `sub' != 8 {
 				global controls_add2_2007 c.medu5##c.medu5 c.number_dropouts5##c.number_dropouts5 ///
 				c.number_repetitions5##c.number_repetitions5 c.computer5##c.computer5 ///
 				c.pib_pcap##c.pib_pcap c.work5##c.work5   ///
@@ -1122,6 +1119,7 @@
 					
 					{
 					
+					/*
 					use `file_reg' if network == 3, clear					
 						merge 1:1 codschool year using `sample_cic', nogen keep(3)
 						if `grade' == 5 & (`sub' == 2 | `sub' == 3) {
@@ -1132,7 +1130,7 @@
 								matrix 	results = results \ (`model', `sub', reg_results[1, colsof(reg_results)-2], reg_results[5,colsof(reg_results)-2], reg_results[6,colsof(reg_results)-2], `quantile', `grade')	 	
 							}
 						}
-					
+					*/
 					}
 					
 					
@@ -1501,7 +1499,7 @@
 					Model 33
 					*/
 					{
-					
+						
 						preserve
 						
 						merge 1:1 codschool year using `sample_cic', keep(3) 
@@ -1515,7 +1513,7 @@
 						}
 						
 						restore
-					
+						
 					}
 					
 					**
@@ -1603,18 +1601,15 @@
 		//grade 5
 			estout model325 model425 model625 model2025 model2125 model2225 model2325 model2425 ///
 				   model335 model435 model635 model2035 model2135 model2235 model2325 model2435 ///
-			using "$tables/Table3.xls", keep(T2009*) 		label cells(b(star pvalue(pvalueboots) fmt(2)) se(par(`"="("' `")""') fmt(2)) pvalueboots(  fmt(4)) ci(par fmt(1))) starlevels(* 0.10 ** 0.05 *** 0.01) stats(N r2 space space mediaT sdT att_sdT space  space esp0 esp1 esp2 esp3 esp4, fmt(%9.0g %9.1f %9.2f) labels("N. schools" "R2" " " "Treatment Group, 2007" "Mean" "Standard Deviation" "Estimate of ATT (in sd)" " " "Specifications" "Municipal FE" "Controls" "Both networks" "% management program" "School FE" )) replace
+			using "$tables/Table3.xls", keep(T2009*) 		label cells(b(star pvalue(pvalueboots) fmt(2)) se(par(`"="("' `")""') fmt(2)) pvalueboots(  fmt(4)) ci(par fmt(1))) starlevels(* 0.10 ** 0.05 *** 0.01) stats(N r2 space space mediaT sdT att_sdT space  space 												, fmt(%9.0g %9.1f %9.2f) labels("N. schools" "R2" " " "Treatment Group, 2007" "Mean" "Standard Deviation" "Estimate of ATT (in sd)" " " "Specifications" "Municipal FE" "Controls" "Both networks" "% management program" "School FE" )) replace
 		
-		   *estout model625 model10025 model635 model10035 ///
-		   *using "$tables/Teste-sem efeito fixo mun.xls", keep(T2009*) 		label cells(b(star pvalue(pvalueboots) fmt(2)) se(par(`"="("' `")""') fmt(2)) pvalueboots(  fmt(4)) ci(par fmt(1))) starlevels(* 0.10 ** 0.05 *** 0.01) stats(N r2 space space mediaT sdT att_sdT space  space esp0 esp1 esp2 esp3 esp4, fmt(%9.0g %9.1f %9.2f) labels("N. schools" "R2" " " "Treatment Group, 2007" "Mean" "Standard Deviation" "Estimate of ATT (in sd)" " " "Specifications" "Municipal FE" "Controls" "Both networks" "% management program" "School FE" )) replace
-
 		
 		//++ appending the estimate increase in the percentage of students with insufficient performance
 		//subs 4 and 5
 		//grade 5 
 			estout model345 model445 model645 model2045 model2145 model2245 model2345 model2445 ///
 				   model355 model455 model655 model2055 model2155 model2255 model2355 model2455 ///
-			using "$tables/Table3.xls", keep(T2009*) 		label cells(b(star pvalue(pvalueboots) fmt(2)) se(par(`"="("' `")""') fmt(2)) pvalueboots(  fmt(4))) 				starlevels(* 0.10 ** 0.05 *** 0.01) stats(N r2 space space mediaT sdT att_sdT space  space esp0 esp1 esp2 esp3 esp4, fmt(%9.0g %9.1f %9.2f) labels("N. schools" "R2" " " "Treatment Group, 2007" "Mean" "Standard Deviation" "Estimate of ATT (in sd)" " " "Specifications" "Municipal FE" "Controls" "Both networks" "% management program" "School FE" )) append
+			using "$tables/Table3.xls", keep(T2009*) 		label cells(b(star pvalue(pvalueboots) fmt(2)) se(par(`"="("' `")""') fmt(2)) pvalueboots(  fmt(4))) 				starlevels(* 0.10 ** 0.05 *** 0.01) stats(N r2 space space mediaT att_pcT space  space esp0 esp1 esp2 esp3 esp4, fmt(%9.0g %9.1f %9.2f) labels("N. schools" "R2" " " "Treatment Group, 2007" "Mean" "Estimate of ATT (in %)" " " "Specifications" "Municipal FE" "Controls" "Both networks" "% management program" "School FE" )) append
 		}
 		
 		

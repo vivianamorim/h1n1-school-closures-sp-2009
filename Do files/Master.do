@@ -499,8 +499,9 @@
 		do "$dofiles/4. Importing & Harmonizing Flow Indicators.do"
 		do "$dofiles/6. Importing & Harmonizing IDEB.do"
 		do "$dofiles/7. Setting up dataset.do"
-		do "$dofiles/8. Regressions.do"
-		do "$dofiles/9. Descriptives.do"
+		
+		*do "$dofiles/8. Regressions.do"
+		*do "$dofiles/9. Descriptives.do"
 		
 		
 		

@@ -1286,21 +1286,47 @@
 			
 			gen 	pb_prob 		= 1 if escola_ef1 == 1 & (!missing(math5) | !missing(port5))
 			replace pb_prob			= 0 if escola_ef1 == 1 &   missing(math5) &  missing(port5)
-			
-
-			
-			
-			
+						
 			**
 			save 		"$final/h1n1-school-closures-sp-2009.dta", replace
-		/**
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
 		br 			codschool year T2009 enrollment5 math5 spt5 principal_effort5 teacher_tenure5 formacao_adequada_port5 formacao_adequada_math5 absenteeism_teachers absenteeism_teachers3   dif_age_5 T2009*
 */
 
 
 
 
-
+/*
 
 estimates clear
 	global controls2008 c.ComputerLab##c.ComputerLab c.ScienceLab##c.ScienceLab c.SportCourt##c.SportCourt c.pib_pcap##c.pib_pcap 		   	  			///
